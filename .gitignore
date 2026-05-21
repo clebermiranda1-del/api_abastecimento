@@ -4,3 +4,5 @@ node_modules/
 .DS_Store
 .vscode/
 pgadmin-servers.json
+supabase_patch_existing.sql
+supabase_schema.sql
