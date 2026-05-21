@@ -19,12 +19,18 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok' });
 });
 
-app.get('/health/db', async (req, res, next) => {
+app.get('/health/db', async (req, res) => {
   try {
     await query('select 1');
     res.json({ status: 'ok', database: 'ok' });
   } catch (error) {
-    next(error);
+    console.error('Falha no health/db:', error.message);
+    res.status(500).json({
+      status: 'erro',
+      database: 'erro',
+      code: error.code || null,
+      message: error.message,
+    });
   }
 });
 
