@@ -42,7 +42,7 @@ No emulador Android, use `http://10.0.2.2:3000` para acessar a API local do comp
 ## Deploy Render + Supabase
 
 1. Crie/ajuste o banco no Supabase executando os SQLs da pasta `migrations/` no SQL Editor, em ordem.
-2. Pegue a connection string do Supabase em Project Settings > Database. Use a URI com senha.
+2. Pegue a connection string do Supabase em Project Settings > Database. No Render, prefira Transaction pooler e use a URI com senha.
 3. Suba este projeto para um repositório GitHub.
 4. No Render, crie um Web Service conectado ao repositório.
 5. Configure:
@@ -56,7 +56,7 @@ Health Check Path: /health
 6. Configure Environment Variables no Render:
 
 ```text
-DATABASE_URL=<connection string do Supabase>
+DATABASE_URL=<connection string pooler do Supabase>
 APP_TOKEN=TOKEN_APP_001
 NODE_ENV=production
 ```

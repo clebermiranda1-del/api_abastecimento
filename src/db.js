@@ -2,8 +2,12 @@ import pg from 'pg';
 
 const { Pool } = pg;
 
+const databaseUrl = process.env.DATABASE_URL;
+const usaSsl = databaseUrl && !databaseUrl.includes('localhost') && !databaseUrl.includes('127.0.0.1');
+
 export const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: databaseUrl,
+  ssl: usaSsl ? { rejectUnauthorized: false } : false,
 });
 
 export async function query(text, params = []) {
