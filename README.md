@@ -31,6 +31,7 @@ No emulador Android, use `http://10.0.2.2:3000` para acessar a API local do comp
 ## Rotas principais
 
 - `GET /health`
+- `GET /health/db`
 - `POST /abastecimentos`
 - `POST /logs`
 - `POST /auth/primeiro-acesso`
@@ -61,5 +62,5 @@ APP_TOKEN=TOKEN_APP_001
 NODE_ENV=production
 ```
 
-7. Depois do primeiro deploy, rode as migrations no Supabase se ainda não tiver rodado.
+7. Depois do primeiro deploy, rode as migrations manualmente com `npm run migrate` apenas quando precisar, ou execute os SQLs no Supabase.
 8. Troque a URL do app Android para a URL pública do Render.

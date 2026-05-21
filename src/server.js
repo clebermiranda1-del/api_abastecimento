@@ -7,6 +7,7 @@ import logsRouter from './routes/logs.js';
 import adminRouter from './routes/admin.js';
 import configuracoesRouter from './routes/configuracoes.js';
 import { agendarLimpezaDadosAntigos } from './retencao.js';
+import { query } from './db.js';
 
 const app = express();
 const port = Number(process.env.PORT || 3000);
@@ -16,6 +17,15 @@ app.use(express.json({ limit: '1mb' }));
 
 app.get('/health', (req, res) => {
   res.json({ status: 'ok' });
+});
+
+app.get('/health/db', async (req, res, next) => {
+  try {
+    await query('select 1');
+    res.json({ status: 'ok', database: 'ok' });
+  } catch (error) {
+    next(error);
+  }
 });
 
 app.use('/abastecimentos', abastecimentosRouter);
