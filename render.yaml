@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: controle-abastecimento-api
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: APP_TOKEN
+        value: TOKEN_APP_001
+      - key: DATABASE_URL
+        sync: false
